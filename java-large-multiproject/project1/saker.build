@@ -1,0 +1,8 @@
+build(out javac) {
+$javac = saker.java.compile(
+    SourceDirectories: src/main/java,
+    Identifier: project1,
+    ClassPath: [
+    ],
+)
+}

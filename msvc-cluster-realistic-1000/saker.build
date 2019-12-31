@@ -1,0 +1,10 @@
+saker.msvc.ccompile({
+	Files: [
+		src/**/*.c,
+		src/**/*.cpp,
+	],
+	IncludeDirectories: [
+		inc,
+	],
+	CompilerOptions: saker.msvc.coptions.preset(console),
+})

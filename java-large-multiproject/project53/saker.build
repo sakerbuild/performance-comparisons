@@ -1,0 +1,10 @@
+build(out javac) {
+$javac = saker.java.compile(
+    SourceDirectories: src/main/java,
+    Identifier: project53,
+    ClassPath: [
+        include(build, Path: "wd:/project14/saker.build")[javac],
+        include(build, Path: "wd:/project15/saker.build")[javac],
+    ],
+)
+}

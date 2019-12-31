@@ -1,0 +1,10 @@
+apply plugin: 'java'
+configurations {
+compile.extendsFrom projectsConfiguration
+}
+dependencies {
+projectsConfiguration project(":project4")
+projectsConfiguration project(":project5")
+projectsConfiguration project(":project6")
+projectsConfiguration project(":project7")
+}
