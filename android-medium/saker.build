@@ -1,0 +1,64 @@
+static(MAVEN_CONFIG) = {
+	Repositories: [
+		{
+			Id: google,
+			Url: "https://maven.google.com/",
+		},
+	]
+}
+static(ANDROID_SDKS) = {
+	AndroidPlatform: saker.android.sdk.platform(),
+	AndroidBuildTools: saker.android.sdk.buildtools(),
+}
+
+$dependencies = saker.maven.resolve(
+	Artifacts: [
+		"androidx.constraintlayout:constraintlayout:1.1.3",
+		"androidx.appcompat:appcompat:1.1.0",
+		"androidx.lifecycle:lifecycle-common:2.1.0",
+		"androidx.lifecycle:lifecycle-runtime:2.1.0",
+	]
+	Configuration: static(MAVEN_CONFIG)
+)
+
+$aapt2 = saker.android.aapt2.compile(
+	app/src/main/res/
+	SDKs: static(ANDROID_SDKS)
+)
+$libs = saker.android.aapt2.compile(
+	$dependencies,
+	Identifier: libs,
+	SDKs: static(ANDROID_SDKS)
+)
+$aaptlink = saker.android.aapt2.link(
+	$aapt2,
+	Overlay: $libs,
+	Manifest: app/src/main/AndroidManifest.xml,
+	AutoAddOverlay: true,
+	MinSDKVersion: 20,
+	TargetSDKVersion: 29
+	VersionCode: 1
+	VersionName: "1.0"
+	SDKs: static(ANDROID_SDKS)
+)
+
+$javac = saker.java.compile(
+	SourceDirectories: [
+		app/src/main/java/
+	] + $aaptlink[JavaSourceDirectories],
+	ClassPath: saker.android.classpath($dependencies),
+	BootClassPath: saker.android.classpath.platform(),
+	SDKs: static(ANDROID_SDKS)
+)
+$d8 = saker.android.d8(
+	$javac,
+	SDKs: static(ANDROID_SDKS)
+)
+$apk = saker.apk.create(
+	Resources: $aaptlink,
+	Classes: $d8,
+)
+$signed = saker.apk.sign(
+	$apk,
+	SDKs: static(ANDROID_SDKS)
+)

@@ -1,0 +1,13 @@
+<resources>
+	<string name="app_name">Saker.build Android performance test</string>
+	<string name="text_activity_1">Test activity 1</string>
+	<string name="text_activity_2">Test activity 2</string>
+	<string name="text_activity_3">Test activity 3</string>
+	<string name="text_activity_4">Test activity 4</string>
+	<string name="text_activity_5">Test activity 5</string>
+	<string name="text_activity_6">Test activity 6</string>
+	<string name="text_activity_7">Test activity 7</string>
+	<string name="text_activity_8">Test activity 8</string>
+	<string name="text_activity_9">Test activity 9</string>
+	<string name="text_activity_10">Test activity 10</string>
+</resources>

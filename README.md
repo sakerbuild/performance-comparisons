@@ -8,3 +8,4 @@ The results of the performance comparisons are available at the following:
 * [Java compilation](https://saker.build/saker.java.compiler/doc/performancecomparison.html)
 * [Java testing](https://saker.build/saker.java.testing/doc/performancecomparison.html)
 * [C/C++ compilation using MSVC (includes distributed build measurements)](https://saker.build/saker.msvc/doc/performancecomparison.html)
+* [Android builds](https://saker.build/saker.android/doc/perfcomparison.html)
